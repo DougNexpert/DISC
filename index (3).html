@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste de Perfil DISC</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            color: #000;
+        }
+        h1 {
+            color: #217346;
+        }
+        form {
+            border: 1px solid #999;
+            padding: 20px;
+            background: #edf5ef;
+            max-width: 700px;
+        }
+        form h2 {
+            color: #217346;
+            border-bottom: 1px solid #999;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type=number] {
+            width: 60px;
+            margin-bottom: 10px;
+            padding: 4px;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid transparent; /* Borda inicial transparente para um efeito mais suave */
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        button {
+            background-color: #217346;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #1a5936;
+        }
+        h2.resultado-titulo {
+            color: #217346;
+        }
+
+        /* --- ESTILOS DE COR POR VALOR (CORES SÓLIDAS) --- */
+        .color-1 { background-color: #d32f2f; color: white; } /* Vermelho */
+        .color-2 { background-color: #ffc107; color: #212121; } /* Amarelo/Âmbar */
+        .color-3 { background-color: #1976d2; color: white; } /* Azul */
+        .color-4 { background-color: #388e3c; color: white; } /* Verde */
+
+        /* --- ESTILOS DE VALIDAÇÃO --- */
+        .error-message {
+            color: #d93025; /* Vermelho para a mensagem de erro */
+            font-size: 0.9em;
+            margin-top: -5px;
+            display: none; /* Inicia oculto */
+        }
+        /* A borda de erro tem prioridade visual */
+        input.error-border {
+            border: 2px solid #d32f2f !important; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste de Perfil DISC</h1>
+    <p>Para cada grupo, classifique as palavras de 1 a 4. Não repita números no mesmo grupo.</p>
+    <form id="discForm">
+        <div class="seq">
+            <h2>Sequência 1</h2>
+            <label>Determinado: <input type="number" name="D" min="1" max="4" required></label>
+            <label>Confiante: <input type="number" name="I" min="1" max="4" required></label>
+            <label>Consistente: <input type="number" name="S" min="1" max="4" required></label>
+            <label>Preciso: <input type="number" name="C" min="1" max="4" required></label>
+            <p class="error-message">Não repita os números nesta sequência.</p>
+        </div>
+        <div class="seq">
+            <h2>Sequência 2</h2>
+            <label>Enérgico: <input type="number" name="D" min="1" max="4" required></label>
+            <label>Entusiasmado: <input type="number" name="I" min="1" max="4" required></label>
+            <label>Calmo: <input type="number" name="S" min="1" max="4" required></label>
+            <label>Disciplinado: <input type="number" name="C" min="1" max="4" required></label>
+            <p class="error-message">Não repita os números nesta sequência.</p>
+        </div>
+        <div class="seq">
+            <h2>Sequência 3</h2>
+            <label>Cuidadoso: <input type="number" name="C" min="1" max="4" required></label>
+            <label>Divertido: <input type="number" name="I" min="1" max="4" required></label>
+            <label>Paciente: <input type="number" name="S" min="1" max="4" required></label>
+            <label>Resoluto: <input type="number" name="D" min="1" max="4" required></label>
+            <p class="error-message">Não repita os números nesta sequência.</p>
+        </div>
+        <div class="seq">
+            <h2>Sequência 4</h2>
+            <label>Forte: <input type="number" name="D" min="1" max="4" required></label>
+            <label>Popular: <input type="number" name="I" min="1" max="4" required></label>
+            <label>Estável: <input type="number" name="S" min="1" max="4" required></label>
+            <label>Meticuloso: <input type="number" name="C" min="1" max="4" required></label>
+            <p class="error-message">Não repita os números nesta sequência.</p>
+        </div>
+        <div class="seq">
+            <h2>Sequência 5</h2>
+            <label>Decidido: <input type="number" name="D" min="1" max="4" required></label>
+            <label>Inspirador: <input type="number" name="I" min="1" max="4" required></label>
+            <label>Leal: <input type="number" name="S" min="1" max="4" required></label>
+            <label>Cuidadoso: <input type="number" name="C" min="1" max="4" required></label>
+            <p class="error-message">Não repita os números nesta sequência.</p>
+        </div>
+        <div class="seq">
+            <h2>Sequência 6</h2>
+            <label>Audacioso: <input type="number" name="D" min="1" max="4" required></label>
+            <label>Animado: <input type="number" name="I" min="1" max="4" required></label>
+            <label>Sereno: <input type="number" name="S" min="1" max="4" required></label>
+            <label>Minucioso: <input type="number" name="C" min="1" max="4" required></label>
+            <p class="error-message">Não repita os números nesta sequência.</p>
+        </div>
+        <div class="seq">
+            <h2>Sequência 7</h2>
+            <label>Determinado: <input type="number" name="D" min="1" max="4" required></label>
+            <label>Comunicativo: <input type="number" name="I" min="1" max="4" required></label>
+            <label>Tranquilo: <input type="number" name="S" min="1" max="4" required></label>
+            <label>Analítico: <input type="number" name="C" min="1" max="4" required></label>
+            <p class="error-message">Não repita os números nesta sequência.</p>
+        </div>
+        <div class="seq">
+            <h2>Sequência 8</h2>
+            <label>Direto: <input type="number" name="D" min="1" max="4" required></label>
+            <label>Otímista: <input type="number" name="I" min="1" max="4" required></label>
+            <label>Compreensivo: <input type="number" name="S" min="1" max="4" required></label>
+            <label>Perfeccionista: <input type="number" name="C" min="1" max="4" required></label>
+            <p class="error-message">Não repita os números nesta sequência.</p>
+        </div>
+        <button type="submit">Calcular Perfil DISC</button>
+    </form>
+
+    <h2 class="resultado-titulo">Resultado</h2>
+    <p id="result"></p>
+    <canvas id="discChart" width="400" height="400"></canvas>
+
+    <script>
+        const form = document.getElementById('discForm');
+        const allInputs = form.querySelectorAll('input[type=number]');
+        const result = document.getElementById('result');
+        const ctx = document.getElementById('discChart').getContext('2d');
+        let chart;
+
+        // --- FUNÇÃO PARA APLICAR CORES ---
+        function applyColor(input) {
+            input.classList.remove('color-1', 'color-2', 'color-3', 'color-4');
+            
+            const value = input.value;
+            if (value >= 1 && value <= 4) {
+                input.classList.add(`color-${value}`);
+            }
+        }
+
+        // --- FUNÇÃO DE VALIDAÇÃO DE NÚMEROS REPETIDOS ---
+        function validateSequence(sequenceElement) {
+            const inputs = sequenceElement.querySelectorAll('input[type=number]');
+            const errorMessage = sequenceElement.querySelector('.error-message');
+            
+            inputs.forEach(input => input.classList.remove('error-border'));
+            errorMessage.style.display = 'none';
+
+            const valueCounts = {};
+            let hasDuplicates = false;
+
+            inputs.forEach(input => {
+                const value = input.value;
+                if (value) { 
+                    valueCounts[value] = (valueCounts[value] || 0) + 1;
+                }
+            });
+
+            inputs.forEach(input => {
+                const value = input.value;
+                if (value && valueCounts[value] > 1) {
+                    input.classList.add('error-border');
+                    hasDuplicates = true;
+                }
+            });
+            
+            if (hasDuplicates) {
+                errorMessage.style.display = 'block';
+                return false;
+            }
+            return true;
+        }
+
+        // --- EVENT LISTENER PARA CADA INPUT INDIVIDUAL ---
+        allInputs.forEach(input => {
+            applyColor(input);
+
+            input.addEventListener('input', () => {
+                applyColor(input);
+                
+                const parentSequence = input.closest('.seq');
+                if (parentSequence) {
+                    validateSequence(parentSequence);
+                }
+            });
+        });
+
+        // --- LISTENER DE SUBMISSÃO UNIFICADO ---
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let isFormValid = true;
+            document.querySelectorAll('.seq').forEach(seq => {
+                if (!validateSequence(seq)) {
+                    isFormValid = false;
+                }
+            });
+
+            if (!isFormValid) {
+                alert('Por favor, corrija os campos com números repetidos antes de continuar.');
+                return;
+            }
+
+            const data = new FormData(form);
+            const scores = { D: 0, I: 0, S: 0, C: 0 };
+
+            for (let [trait, value] of data.entries()) {
+                scores[trait] += parseInt(value);
+            }
+
+            result.textContent = `Pontuações - Dominância: ${scores.D}, Influência: ${scores.I}, Estabilidade: ${scores.S}, Conformidade: ${scores.C}`;
+
+            const chartData = {
+                labels: ['Dominância (D)', 'Influência (I)', 'Estabilidade (S)', 'Conformidade (C)'],
+                datasets: [{
+                    label: 'Perfil DISC',
+                    data: [scores.D, scores.I, scores.S, scores.C],
+                    backgroundColor: 'rgba(33, 115, 70, 0.2)',
+                    borderColor: 'rgba(33, 115, 70, 1)',
+                    pointBackgroundColor: 'rgba(33, 115, 70, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(33, 115, 70, 1)',
+                    borderWidth: 2
+                }]
+            };
+
+            if (chart) chart.destroy();
+            chart = new Chart(ctx, {
+                type: 'radar',
+                data: chartData,
+                options: {
+                    scales: {
+                        r: {
+                            suggestedMin: 0,
+                            suggestedMax: 32,
+                            ticks: { stepSize: 4 },
+                             pointLabels: {
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
